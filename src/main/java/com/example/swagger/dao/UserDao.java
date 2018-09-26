@@ -2,6 +2,8 @@ package com.example.swagger.dao;
 
 import com.example.swagger.domain.User;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,13 @@ import java.util.List;
 
 public interface UserDao {
 
-    User getUserById(Long id);
+    User getUserById(@Param("id") Long id);
 
     List<User> getUserList();
+
+    Long addUser(User user);
+
+    void deleteUser(Long id);
+
+    void updateUser(User user);
 }

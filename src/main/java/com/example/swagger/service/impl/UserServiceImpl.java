@@ -7,6 +7,7 @@ import com.example.swagger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +17,7 @@ import java.util.Map;
  */
 
 @Service
-class UserServiceImpl implements UserService {
-
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
@@ -34,16 +34,25 @@ class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> addUser(User user) {
-        return null;
+        userDao.addUser(user);
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", "success");
+        return map;
     }
 
     @Override
     public Map<String, Object> deleteUser(Long id) {
-        return null;
+        userDao.deleteUser(id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", "success");
+        return map;
     }
 
     @Override
     public Map<String, Object> updateUser(User user) {
-        return null;
+        userDao.updateUser(user);
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", "success");
+        return map;
     }
 }

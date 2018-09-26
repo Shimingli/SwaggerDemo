@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.spring.springboot.dao.CityDao">
-	<resultMap id="BaseResultMap" type="com.example.swagger.domain">
-		<result column="user_id" property="id" />
+<mapper namespace="com.example.swagger.dao.UserDao">
+	<resultMap id="BaseResultMap" type="com.example.swagger.domain.User">
+		<result column="id" property="id" />
 		<result column="user_name" property="name" />
 		<result column="user_age" property="age" />
 		<result column="user_description" property="description" />
 	</resultMap>
 
-	<parameterMap id="user" type="com.example.swagger.domain"/>
+	<parameterMap id="User" type="com.example.swagger.domain.User"/>
 	<sql id="Base_Column_List">
-		user_id, user_name, user_age, user_description
+		id, user_name, user_age, description
 	</sql>
 
-	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="getUserById" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where user_id = #{user_id}
+		where id = #{id}
 	</select>
 
-	<select id="findAllCity" resultMap="BaseResultMap" >
+	<select id="getUserList" resultMap="BaseResultMap" >
 		select
 		<include refid="Base_Column_List" />
 		from user
 	</select>
 
-	<insert id="saveCity" parameterMap="City" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addUser" parameterMap="User" useGeneratedKeys="true" keyProperty="id">
 		insert into
-			city(id,province_id,city_name,description)
+			user(id,user_name,user_age,description)
 		values
-			(#{id},#{provinceId},#{cityName},#{description})
+			(#{id},#{name},#{age},#{description})
 	</insert>
 
-	<update id="updateCity" parameterMap="City">
+	<update id="updateUser" parameterMap="User">
 		update
-			city
+		user
 		set
-		<if test="provinceId!=null">
-			province_id = #{provinceId},
-		</if>
 		<if test="cityName!=null">
-			city_name = #{cityName},
+			user_name = #{name},
 		</if>
 		<if test="description!=null">
 			description = #{description}
+		</if>
+		<if test="age!=null">
+			user_age = #{age}
 		</if>
 		where
 			id = #{id}
 	</update>
 
-	<delete id="deleteCity" parameterType="java.lang.Long">
+	<delete id="deleteUser" parameterType="java.lang.Long">
 		delete from
-			city
+			user
 		where
 			id = #{id}
 	</delete>

@@ -1,4 +1,4 @@
-package com.example.swagger.controller;
+package com.example.swagger.web;
 
 import com.example.swagger.bean.OtherProperties;
 import com.example.swagger.bean.Properties;
