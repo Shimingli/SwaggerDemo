@@ -10,7 +10,7 @@
 
     <name>swagger</name>
     <description>Demo project for Spring Boot</description>
-    <!--2.0.5.RELEASE 版本的区别太大了啊 1.5.1.RELEASE  是不是自己写错了代码的原因啊，真的是日了狗啊！哈哈-->
+    <!--2.0.5.RELEASE 版本的区别太大了啊 1.5.1.RELEASE  是不是自己写错了代码的原因啊，真的是日了狗啊！哈哈  1.5.11.RELEASE  有时候版本高了 ，感觉mvn 没有自动的导入啊  真的坑-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -27,11 +27,11 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Freemarker 依赖  如果去掉的话 请求会报错 This application has no explicit mapping for /error, so you are seeing this as a fallback. -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
+        <!--&lt;!&ndash; Spring Boot Freemarker 依赖  如果去掉的话 请求会报错 This application has no explicit mapping for /error, so you are seeing this as a fallback. &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-freemarker</artifactId>-->
+        <!--</dependency>-->
 
 
         <dependency>
@@ -58,7 +58,6 @@
             <version>${mybatis-spring-boot}</version>
         </dependency>
 
-
         <!--使用的Swagger版本为2.6.1：-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -72,4 +71,6 @@
             <version>2.6.1</version>
         </dependency>
     </dependencies>
+
+
 </project>
