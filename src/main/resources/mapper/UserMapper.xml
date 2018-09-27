@@ -35,13 +35,13 @@
 
 	<update id="updateUser" parameterMap="User">
 		update
-		user
+		   user
 		set
-		<if test="cityName!=null">
+		<if test="name!=null">
 			user_name = #{name},
 		</if>
 		<if test="description!=null">
-			description = #{description}
+			description = #{description},
 		</if>
 		<if test="age!=null">
 			user_age = #{age}

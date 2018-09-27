@@ -19,7 +19,7 @@ public interface UserDao {
 
     Long addUser(User user);
 
-    void deleteUser(Long id);
+    Long deleteUser(Long id);
 
-    void updateUser(User user);
+    Long updateUser(User user);
 }

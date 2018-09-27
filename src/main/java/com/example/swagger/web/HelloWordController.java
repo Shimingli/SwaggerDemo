@@ -13,7 +13,7 @@ import springfox.documentation.annotations.ApiIgnore;
 /**
  * author： Created by shiming on 2018/9/26 15:24
  * mailbox：lamshiming@sina.com
- * swagger 忽略掉这个类
+ * swagger 忽略掉这个类 ApiIgnore
  */
 
 @Controller

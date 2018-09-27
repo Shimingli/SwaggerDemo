@@ -32,8 +32,8 @@ public class SwaggerConfig {
 
     private ApiInfo buildApiInf() {
         return new ApiInfoBuilder()
-                .title("你好")
-                .contact(new Contact("shiming", "www.shiming.site", "lamshiming@sina.com"))
+                .title("RESTful API 文档")
+                .contact(new Contact("shiming", "https://www.shiming.site/", null))
                 .version("1.0")
                 .build();
     }

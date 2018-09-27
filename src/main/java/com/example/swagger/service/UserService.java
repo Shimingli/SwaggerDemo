@@ -32,19 +32,19 @@ public interface UserService {
      * @param user
      * @return
      */
-    Map<String, Object> addUser( User user);
+    Long addUser( User user);
 
     /**
      * 删除user
      * @param id
      * @return 返回一个map
      */
-    Map<String, Object> deleteUser( Long id);
+    Long deleteUser( Long id);
 
     /**
      * 更新user
      * @param user
      * @return
      */
-    Map<String, Object> updateUser(User user);
+    Long updateUser(User user);
 }

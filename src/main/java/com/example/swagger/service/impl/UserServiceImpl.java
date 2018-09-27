@@ -33,26 +33,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> addUser(User user) {
-        userDao.addUser(user);
-        Map<String, Object> map = new HashMap<>();
-        map.put("result", "success");
-        return map;
+    public Long addUser(User user) {
+        Long aLong = userDao.addUser(user);
+        return aLong;
     }
 
     @Override
-    public Map<String, Object> deleteUser(Long id) {
-        userDao.deleteUser(id);
-        Map<String, Object> map = new HashMap<>();
-        map.put("result", "success");
-        return map;
+    public Long deleteUser(Long id) {
+        Long aLong = userDao.deleteUser(id);
+        return aLong;
     }
 
     @Override
-    public Map<String, Object> updateUser(User user) {
-        userDao.updateUser(user);
-        Map<String, Object> map = new HashMap<>();
-        map.put("result", "success");
-        return map;
+    public Long updateUser(User user) {
+        Long aLong = userDao.updateUser(user);
+        return aLong;
     }
 }
