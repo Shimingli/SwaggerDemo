@@ -1,6 +1,9 @@
 package com.example.swagger.web;
 
 import com.example.swagger.domain.User;
+import com.example.swagger.result.GlobalErrorInfoEnum;
+import com.example.swagger.result.GlobalErrorInfoException;
+import com.example.swagger.result.ResultBody;
 import com.example.swagger.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,30 +46,29 @@ public class UserController {
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
     @GetMapping("/{id}")
     @ResponseBody
-    public User getUserById(@PathVariable(value = "id") Long id) {
+    public ResultBody getUserById(@PathVariable(value = "id") Long id) throws GlobalErrorInfoException {
         System.out.println("id="+id);
         User userById = cityService.getUserById(id);
         if(userById!=null){
-            return userById;
+            ResultBody resultBody = new ResultBody(userById);
+            return resultBody;
         }
-        User user = new User();
-        user.setDescription("没有找到这个人");
-        return user;
+//        User user = new User();
+//        user.setDescription("没有找到这个人");
+        throw new GlobalErrorInfoException(GlobalErrorInfoEnum.NOT_FOUND);
+       // return user;
     }
     // http://localhost:8080/user/list
     @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
     @GetMapping("/list")
     @ResponseBody
-    public List<User> getUserList() {
+    public ResultBody getUserList() throws GlobalErrorInfoException {
         List<User> userList = cityService.getUserList();
         if (userList==null||userList.size()==0){
-            List<User> list = new ArrayList<>();
-            User user = new User();
-            user.setDescription("没有找到此人");
-            list.add(user);
-            return list;
+            throw new GlobalErrorInfoException(GlobalErrorInfoEnum.NOT_FOUND);
         }
-        return userList;
+        ResultBody resultBody = new ResultBody(userList);
+        return resultBody;
     }
 
 
@@ -74,35 +76,39 @@ public class UserController {
     @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
     @PostMapping("/add")
     @ResponseBody
-    public Map<String, Object> addUser(@RequestBody User user) {
+    public ResultBody addUser(@RequestBody User user) {
         Long aLong = cityService.addUser(user);
         System.out.println("Long=="+aLong);
         Map<String, Object> map = new HashMap<>();
-        map.put("result", "success");
-        return map;
+        map.put("result", "新增用户成功");
+        ResultBody resultBody = new ResultBody(map);
+        return resultBody;
     }
 
     @ApiOperation(value = "删除用户", notes = "根据用户id删除用户")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
     @DeleteMapping("/{id}")
-    public @ResponseBody Map<String, Object> deleteUser(@PathVariable(value = "id") Long id) {
+    @ResponseBody
+    public ResultBody deleteUser(@PathVariable(value = "id") Long id) {
         Long aLong = cityService.deleteUser(id);
         System.out.println("along="+aLong);
         System.out.println("删除掉的id="+id);
         Map<String, Object> map = new HashMap<>();
-        map.put("result", "success");
-        return map;
+        map.put("result", "删除成功");
+        ResultBody resultBody = new ResultBody(map);
+        return resultBody;
     }
     @ApiOperation(value = "更新用户", notes = "根据用户id更新用户")
-    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path"), @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User") })
+    @ApiImplicitParams(@ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User"))
     @PutMapping("/{id}")
     @ResponseBody
-    public  Map<String, Object> updateUser(@RequestBody User user) {
+    public  ResultBody updateUser(@RequestBody User user) {
         System.out.println(user.toString());
         Long aLong = cityService.updateUser(user);
         System.out.println("aLong="+aLong);
         Map<String, Object> map = new HashMap<>();
-        map.put("result", "success");
-        return map;
+        map.put("result", "更新成功");
+        ResultBody resultBody = new ResultBody(map);
+        return resultBody;
     }
 }
