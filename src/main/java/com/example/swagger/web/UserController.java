@@ -29,6 +29,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * author： Created by shiming on 2018/9/26 16:42
  * mailbox：lamshiming@sina.com
+ * des ：http://localhost:8080/swagger-ui.html#/
  */
 
 @Api(value = "用户Controller")
